@@ -22,8 +22,12 @@ const users = {
   users: new Set(),
   getUsers() {
     if (this.users.size === 0) {
-      const data = fs.readFileSync("users.txt", "utf8");
-      this.users = new Set(data.split("\n"));
+      try {
+        const data = fs.readFileSync("users.txt", "utf8");
+        this.users = new Set(data.split("\n"));
+      } catch (e) {
+        console.log(e);
+      }
     }
     return this.users;
   },
